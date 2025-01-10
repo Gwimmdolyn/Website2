@@ -1,7 +1,15 @@
 // allows for users to save pets to favourites
 
-// Listen for click events on the pet list container
-document.querySelector(".pet-list-container").addEventListener("click", function (e) {
+// allows for users to save pets to favourites
+
+// Ensure no duplicate listeners
+const container = document.querySelector(".pet-list-container");
+if (container) {
+    container.removeEventListener("click", handleSaveToFavourites);
+    container.addEventListener("click", handleSaveToFavourites);
+}
+
+function handleSaveToFavourites(e) {
     if (e.target.classList.contains("save-to-favourites")) {
         const petCard = e.target.closest(".pet-card");
         if (!petCard) {
@@ -37,4 +45,4 @@ document.querySelector(".pet-list-container").addEventListener("click", function
             console.log(`${pet.name} is already in favourites.`);
         }
     }
-});
+}
